@@ -15,3 +15,8 @@ class Deck:
         else:
             print("Brak kart w talii.")
             return None
+    def show_card(self):
+        temp = self.cards[-1]
+        temp.flip()
+        return temp
+        #return self.cards[-1]

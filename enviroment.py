@@ -71,6 +71,7 @@ def print_final_columns(final_columns):
         #print(f"Final Column {column.suit}{i+1}: {column.show_cards()}")
 
 def main_columns(columns):
+    return None
     create_columns()
     set_card_in_column(deck, columns)
     
@@ -97,7 +98,7 @@ def setup_game():
     return deck, columns, final_columns
 
 
-def print_game_state(columns, final_columns):
+def print_game_state(columns, final_columns, deck):
     """Prints the current state of the game: columns and final columns."""
     print("Columns:")
     print_columns(columns)
@@ -106,11 +107,13 @@ def print_game_state(columns, final_columns):
     print_final_columns(final_columns)
 
     print("\nDrawn Cards:")
+    print(deck.show_card())
     
     
 
 # Main execution
+'''
 deck, columns, final_columns = setup_game()
-print_game_state(columns, final_columns)
-
+print_game_state(columns, final_columns, deck)
+'''
 
