@@ -97,7 +97,7 @@ def setup_game():
     return deck, columns, final_columns
 
 
-def print_game_state(columns, final_columns, deck):
+def print_game_state(columns, final_columns):
     """Prints the current state of the game: columns and final columns."""
     print("Columns:")
     print_columns(columns)
