@@ -10,3 +10,10 @@
 
 5. draw final z draw to kolumy 
 
+6. przenoszenie kilku card do innej kolumny 
+
+7. skip daje nastepną karte z draw 
+
+8. help wyswietla pomoc (lepiej napisany ten pli)
+
+9. quit (znaczy ze ktos jest frajerem i przegrywa)
