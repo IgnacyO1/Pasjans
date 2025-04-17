@@ -9,7 +9,8 @@ class Card:
         self._suit = suit
         self._rank = rank
 
-        self.value = None 
+        self.value = self.set_value()
+        self._value = self.value
 
     def flip(self):
         self.visible = not self.visible
@@ -23,6 +24,30 @@ class Card:
     def value_of_card(self):
         return self.value 
     
+
+    def set_value(self):
+        dict = {
+            'A': 1,
+            '2': 2,
+            '3': 3,
+            '4': 4,
+            '5': 5,
+            '6': 6,
+            '7': 7,
+            '8': 8,
+            '9': 9,
+            '10': 10,
+            'J': 11,
+            'Q': 12,
+            'K': 13
+        }
+
+        for card in dict:
+            if self.rank == card:
+                self.value = dict[card]
+                break
+        return self.value
+
 
     
     

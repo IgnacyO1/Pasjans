@@ -108,6 +108,7 @@ def print_game_state(columns, final_columns, deck):
 
     print("\nDrawn Cards:")
     print(deck.show_card())
+    #print(deck.show_card().value)
     
     
 

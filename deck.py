@@ -17,6 +17,6 @@ class Deck:
             return None
     def show_card(self):
         temp = self.cards[-1]
-        temp.flip()
+        if temp.is_visible() == False:
+            temp.flip()
         return temp
-        #return self.cards[-1]

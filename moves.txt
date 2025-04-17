@@ -1,0 +1,3 @@
+
+1. Z jednej kolumny do drugiej|   "move C1 C2" bierz ostatnią kartę z C1 i chce ją dać na ostatnią kartę do C2 musi być o jedną niższa oraz przeciwny kolor
+2. 
