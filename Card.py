@@ -4,6 +4,7 @@ class Card:
         self.suit = suit
         self.rank = rank
         self.visible = visible
+        self._color = 'black' if suit in ['♠', '♣'] else 'red'
 
         self._suit = suit
         self._rank = rank
@@ -21,5 +22,7 @@ class Card:
     
     def value_of_card(self):
         return self.value 
+    
+
     
     
