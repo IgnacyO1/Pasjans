@@ -1,3 +1,12 @@
 
-1. Z jednej kolumny do drugiej|   "move C1 C2" bierz ostatnią kartę z C1 i chce ją dać na ostatnią kartę do C2 musi być o jedną niższa oraz przeciwny kolor
-2. 
+1. Z jednej kolumny do drugiej|   "move C1 C2" bierz ostatnią kartę z C1 i chce ją dać na ostatnią kartę do C2 musi być o jedną niższa oraz przeciwny kolor [mozna z tego wyciagać 2 kolumny]
+
+
+2.  kolumna final 
+
+3. final kolumna z final do kolomny 
+
+4.  draw kolumna z draw do kolimy 
+
+5. draw final z draw to kolumy 
+
