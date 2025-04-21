@@ -61,4 +61,35 @@ class Final_Column:
         else:
             return str("[X]")
                   
+
+
+
+
+
+'''class Draw_Column:
+    def __init__(self, deck):
+        self.deck = deck
+        self.drawn_cards = []  # Lista wylosowanych kart
+
+    def show_draw_card(self):
+        """Pokazuje kartę na szczycie kolumny."""
+        if self.get_length() > 0:
+            temp = self.cards[-1]
+            if temp.is_visible() == False:
+                temp.flip()
+                return temp
+            return self.cards[-1]
+        return None
+    def get_length(self):
+        """Zwraca liczbę kart w kolumnie."""
+        return len(self.cards)
+    
+    def next_card(self):
+        """Zwraca następną kartę z talii."""
+        self.drawn_cards.append(self.cards[-1])
+        self.cards.pop()
+        return self.cards[-1]'''
+    
+    
+    
  

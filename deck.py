@@ -20,3 +20,7 @@ class Deck:
         if temp.is_visible() == False:
             temp.flip()
         return temp
+    
+    def get_length(self):
+        """Zwraca liczbę kart w talii."""
+        return len(self.cards)
