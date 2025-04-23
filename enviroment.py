@@ -117,4 +117,12 @@ def print_game_state(columns, final_columns, deck):
 deck, columns, final_columns = setup_game()
 print_game_state(columns, final_columns, deck)
 '''
+'''
+crate_deck()
 
+x = list_of_cards[0]
+print(x)
+x.flip()
+print(x)
+print(x.color())
+print(x.value)'''

@@ -4,14 +4,19 @@ class Card:
         self.suit = suit
         self.rank = rank
         self.visible = visible
-        self._color = 'black' if suit in ['♠', '♣'] else 'red'
+        
 
         self._suit = suit
         self._rank = rank
 
         self.value = self.set_value()
         self._value = self.value
-
+    def color(self):
+        if self.suit in ['♠', '♣']:
+            return 'black'
+        else:
+            return 'red'
+        #return self._color
     def flip(self):
         self.visible = not self.visible
     
