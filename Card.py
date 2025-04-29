@@ -10,7 +10,7 @@ class Card:
         self._rank = rank
 
         self.value = self.set_value()
-        self._value = self.value
+
     def color(self):
         if self.suit in ['♠', '♣']:
             return 'black'
@@ -26,7 +26,7 @@ class Card:
     def __str__(self):
         return f"{self.rank}{self.suit}" if self.visible else "[X]"
     
-    def value_of_card(self):
+    def value(self):
         return self.value 
     
 
