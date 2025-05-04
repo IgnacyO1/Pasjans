@@ -1,0 +1,11 @@
+1. Napisać Każdą funcje engine  do 11 
+2. Napisać ui do przesuwania karte do 18
+
+3. testować 19-20
+
+4. połączyć  21-22 
+
+5. testować  22-23 
+
+ogolne kolorki ui posegregowanie dokumentacje 24 
+TERMIN:  25 maja 
