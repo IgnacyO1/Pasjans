@@ -60,6 +60,14 @@ class Final_Column:
             return self.cards[-1]
         else:
             return str("[X]")
+        
+    def suit(self):
+        """Zwraca kolor karty."""
+        return self.suit
+    def top_card(self):
+        if len(self.cards) == 0:
+            return None
+        return self.cards[-1]
                   
 
 
