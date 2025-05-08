@@ -49,9 +49,9 @@ class Card:
 
         for card in dict:
             if self.rank == card:
-                self.value = dict[card]
+                temp_value = dict[card]
                 break
-        return self.value
+        return temp_value
 
 
     
