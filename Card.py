@@ -6,8 +6,7 @@ class Card:
         self.visible = visible
         
 
-        self._suit = suit
-        self._rank = rank
+        
 
         self.value = self.set_value()
 
@@ -26,8 +25,7 @@ class Card:
     def __str__(self):
         return f"{self.rank}{self.suit}" if self.visible else "[X]"
     
-    def value(self):
-        return self.value 
+    
     
 
     def set_value(self):
