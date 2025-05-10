@@ -49,6 +49,10 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
     if number_card > len(source_cards):
         return False
 
+    #sprawdzić czy kolumny są puste
+    if source_column.is_empty():
+        return False
+    
 
     #ustalić zakres przenoszenia 
     # sprawdzić czy każda karta jest widoczna 
@@ -62,12 +66,68 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
         return False
     
     for card in card_to_move:
-        if card.visible:
+        if card.visible or card is not None:
             continue
         else:
             return False 
         
+    for i in range(1, len(card_to_move)):
+        if card_to_move[i].color() == card_to_move[i-1].color():
+            return False
+        
+
+    last_card = source_cards[-number_card] 
+
+    if target_column.is_empty():
+        if last_card.rank == 'K':
+            return True
+        else:
+            return False
+    target_card = target_column.get_top_card()
+
+
+     
+
+    if target_card is None:
+        return False 
     
+    #Sprawdzenie kolorów
+    if last_card.color() == target_card.color():
+        return False
+    
+    #Sprawdzenie wartości
+    if last_card.value + 1 == target_card.value:
+        return True 
+    else:
+        return False
+    
+    return True 
+
+    
+        
+    
+def column_to_final(first_column: int, final_columns: list) -> bool:
+    card_suit = first_column.get_top_card().suit
+    card = first_column.get_top_card()
+    where_column = None
+    for column in final_columns:
+        if column.suit() == card_suit:
+            where_column = column
+            break
+    if where_column is None:
+        return False
+    
+    card_fc = where_column.top_card()
+    if card_fc == None:
+        return False 
+    
+    if card_fc.value() + 1 != card.value():
+        return False
+    
+    if card_suit != card_fc.suit:
+        return False
+    return True
+        
 
 
 
@@ -90,8 +150,7 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
 
 
 
-
-
+'''
 def cowlumn_to_column(first_column, second_column):
     """Przenosi karty z jednej kolumny do drugiej."""
     #first column to jest skąd bierzemy karty, second column to jest dokąd je przenosimy
@@ -118,26 +177,4 @@ def cowlumn_to_column(first_column, second_column):
     if card1.value() != card2.value() + 1:
         return False
     return True
-
-def column_to_final(first_column: int, final_columns: list) -> bool:
-    card_suit = first_column.get_top_card().suit
-    card = first_column.get_top_card()
-    where_column = None
-    for column in final_columns:
-        if column.suit() == card_suit:
-            where_column = column
-            break
-    if where_column is None:
-        return False
-    
-    card_fc = where_column.top_card()
-    if card_fc == None:
-        return False 
-    
-    if card_fc.value() + 1 != card.value():
-        return False
-    
-    if card_suit != card_fc.suit:
-        return False
-    return True
-        
+'''
