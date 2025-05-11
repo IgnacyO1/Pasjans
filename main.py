@@ -12,7 +12,7 @@ enviroment.print_game_state(columns, final_columns,deck)
 print("-" * 40)
 
 move = ui_moves.ask_for_move()
-procesed_move = ui_moves.proces_move(move)
+procesed_move = ui_moves.proces_move(move, columns)
 a = columns[0]
 b = columns[1]
 
@@ -31,7 +31,7 @@ def ui_column_to_column(first_column, second_column):
 
 
 
-print(engine.column_to_column(a, b))    
+print(procesed_move)  
 #print(move.startswith("test"))
 
 #test = move.split()
