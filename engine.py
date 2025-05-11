@@ -34,8 +34,7 @@ def column_to_column(first_column: Column, second_column: Column) ->bool:
         return False
     
     #Sprawdzenie wartości 
-
-    if source_card.value +1 == target_card.value:
+    if target_card.value == source_card.value + 1:  # Changed condition
            return True 
     else:
         return False
@@ -96,7 +95,7 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
         return False
     
     #Sprawdzenie wartości
-    if last_card.value + 1 == target_card.value:
+    if target_card.value == last_card.value + 1 :
         return True 
     else:
         return False
@@ -128,6 +127,10 @@ def column_to_final(first_column: int, final_columns: list) -> bool:
         return False
     return True
         
+
+
+
+
 
 
 
