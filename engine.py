@@ -9,7 +9,7 @@ def column_to_column(first_column: Column, second_column: Column) ->bool:
     
     source_card = first_column.get_top_card()
 
-    if source_card is not None or not source_card.is_visible():
+    if source_card is None or not source_card.is_visible():
         return False
     
     if second_column.is_empty(): #na pusta kolumnę można dac tylko króla 
@@ -56,7 +56,7 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
 
     #ustalić zakres przenoszenia 
     # sprawdzić czy każda karta jest widoczna 
-    # sprawdzić popeawnosc ostatniej kart (liczać od brzegu stossu)
+    # sprawdzić popeawnosc ostatniej kart (liczyć od brzegu stossu)
     #kolor 
     #wartość
     #przelecieć po kartach dla pewności 
