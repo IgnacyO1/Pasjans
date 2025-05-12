@@ -105,12 +105,13 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
     
         
     
-def column_to_final(first_column: int, final_columns: list) -> bool:
-    card_suit = first_column.get_top_card().suit
+def column_to_final(first_column: Column, final_columns: list) -> bool:
+
     card = first_column.get_top_card()
+    card_suit = first_column.get_top_card().suit
     where_column = None
     for column in final_columns:
-        if column.suit() == card_suit:
+        if column.suit == card_suit:
             where_column = column
             break
     if where_column is None:

@@ -12,7 +12,7 @@ enviroment.print_game_state(columns, final_columns,deck)
 print("-" * 40)
 
 move = ui_moves.ask_for_move()
-procesed_move = ui_moves.proces_move(move, columns)
+procesed_move = ui_moves.proces_move(move, columns,final_columns)
 a = columns[0]
 b = columns[1]
 
