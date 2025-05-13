@@ -1,7 +1,7 @@
 class Deck:
     def __init__(self, cards):
         self.cards = cards
-        self.current_card_index = 0
+        
 
     def shuffle(self):
         import random
@@ -24,3 +24,5 @@ class Deck:
     def get_length(self):
         """Zwraca liczbę kart w talii."""
         return len(self.cards)
+    
+    
