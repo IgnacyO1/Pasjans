@@ -71,5 +71,131 @@ class Final_Column:
                   
 
 
+class Draw_Column:
+    def __init__(self, cards: list):
+        """
+        Inicjalizuje kolumnę kart do dobierania w grze pasjans.
+        
+        Args:
+            cards (list): Lista kart pozostałych po rozdaniu do kolumn.
+        """
+        self.cards = cards  # lista kart wolnych do dobierania
+        self.drawn_cards = []  # lista kart skipniętych/odrzuconych
+        self.current_card = None  # aktualnie widoczna karta
+
+    def next_card(self):
+        """
+        Dobiera następną kartę z talii.
+        Jeśli talia jest pusta, tasuje odrzucone karty.
+        
+        Returns:
+            Card: Aktualnie dobrana karta lub None, jeśli nie ma kart.
+        """
+        if len(self.cards) == 0:
+            self.reshuffle()
+            if len(self.cards) == 0:  # Jeśli po tasowaniu wciąż nie ma kart
+                return None
+        
+        # Pobierz kartę z wierzchu talii
+        self.current_card = self.cards.pop(0)
+        
+        # Odwróć kartę (face up)
+        if not self.current_card.visible:
+            self.current_card.flip()
+            
+        return self.current_card
+    
+    def get_current_card(self):
+        """
+        Zwraca aktualnie widoczną kartę bez dobierania nowej.
+        
+        Returns:
+            Card: Aktualna karta lub None, jeśli nie ma żadnej.
+        """
+        return self.current_card
+    
+    def remove_card(self):
+        """
+        Usuwa i zwraca aktualną kartę (np. gdy gracz użyje karty).
+        
+        Returns:
+            Card: Usunięta karta lub None, jeśli nie ma aktualnej karty.
+        """
+        if self.current_card is None:
+            return None
+        
+        card = self.current_card
+        self.current_card = None
+        return card
+    
+    def skip_card(self):
+        """
+        Przenosi aktualną kartę do odrzuconych i dobiera nową.
+        
+        Returns:
+            Card: Nowo dobrana karta lub None, jeśli nie ma kart.
+        """
+        if self.current_card is not None:
+            self.drawn_cards.append(self.current_card)
+            self.current_card = None
+        
+        return self.next_card()
+    
+    def reshuffle(self):
+        """
+        Tasuje odrzucone karty i przenosi je z powrotem do talii.
+        """
+        import random
+        if len(self.drawn_cards) > 0:
+            random.shuffle(self.drawn_cards)
+            self.cards = self.drawn_cards
+            self.drawn_cards = []
+    
+    def is_empty(self):
+        """
+        Sprawdza, czy talia i odrzucone karty są puste.
+        
+        Returns:
+            bool: True, jeśli nie ma żadnych kart, False w przeciwnym razie.
+        """
+        return len(self.cards) == 0 and len(self.drawn_cards) == 0 and self.current_card is None
+    
+    def get_count(self):
+        """
+        Zwraca łączną liczbę kart w talii i odrzuconych.
+        
+        Returns:
+            int: Liczba kart.
+        """
+        count = len(self.cards) + len(self.drawn_cards)
+        if self.current_card is not None:
+            count += 1
+        return count
+    
+    def remove_first_card(self):
+        """
+        Usuwa i zwraca pierwszą kartę z talii.
+        
+        Returns:
+            Card: Pierwsza karta z talii lub None, jeśli talia jest pusta.
+        """
+        if len(self.cards) > 0:
+            return self.cards.pop(0)
+        return None
+    
+    def __str__(self):
+        """
+        Zwraca reprezentację tekstową aktualnego stanu talii.
+        
+        Returns:
+            str: Opis talii.
+        """
+        if self.current_card is not None:
+            current = str(self.current_card)
+        else:
+            current = "[brak]"
+            
+        return f"Karta: {current} | Pozostało: {len(self.cards)} | Odrzucone: {len(self.drawn_cards)}"
 
 
+    

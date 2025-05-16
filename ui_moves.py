@@ -10,7 +10,7 @@ def ask_for_move() -> str:
     return move
 
 
-def proces_move(move, columns: list, final_columns: list) -> None:
+def proces_move(move, columns: list, final_columns: list):
     ''' on tylko określa co to jest za ruch, nie wykonuje go nie sprawdza czy jest poprawny'''
     #przy braku znalezienia poprawnego call do engine lub innych fucnji (quit help new game) callowac na nowo wprowadzenie ruchy
     move = move.lower().split()

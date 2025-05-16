@@ -108,7 +108,7 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
 def column_to_final(first_column: Column, final_columns: list) -> bool:
 
     card = first_column.get_top_card()
-    card_suit = first_column.get_top_card().suit
+    card_suit = card.suit
     where_column = None
     for column in final_columns:
         if column.suit == card_suit:
@@ -121,7 +121,7 @@ def column_to_final(first_column: Column, final_columns: list) -> bool:
     if card_fc == None:
         return False 
     
-    if card_fc.value() + 1 != card.value():
+    if card_fc.value + 1 != card.value:
         return False
     
     if card_suit != card_fc.suit:
@@ -131,54 +131,102 @@ def column_to_final(first_column: Column, final_columns: list) -> bool:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-def cowlumn_to_column(first_column, second_column):
-    """Przenosi karty z jednej kolumny do drugiej."""
-    #first column to jest skąd bierzemy karty, second column to jest dokąd je przenosimy
-
-    if first_column.is_empty():
+def draw_to_column(draw_pile, target_column: Column) -> bool:
+    """
+    Przenosi kartę z kolumny dobierania (draw pile) do normalnej kolumny.
+    
+    Args:
+        draw_pile: Obiekt Draw_Column reprezentujący stos kart do dobierania.
+        target_column: Obiekt Column reprezentujący docelową kolumnę.
+        
+    Returns:
+        bool: True jeśli przeniesienie się udało, False w przeciwnym wypadku.
+    """
+    # Sprawdź czy w kolumnie dobierania jest aktualna karta
+    source_card = draw_pile.get_current_card()
+    
+    if source_card is None:
         return False
     
-    if first_column not in [1,2,3,4,5,6,7] or second_column not in [1,2,3,4,5,6,7]:
-        return False
-    card_first_column = first_column.get_top_card()
-    card_second_column = second_column.get_top_card()
-
-    if second_column.is_empty() and card_first_column.rank != 'K':
-        return False
-
-    card1 = card_first_column
-    card2 = card_second_column
-
-    if card1 == None or card2 == None:
-        return False
-    if card1.color() == card2.color():
+    # Sprawdź czy karta może być przeniesiona na docelową kolumnę
+    if target_column.is_empty():
+        # Na pustą kolumnę można położyć tylko króla
+        if source_card.rank == 'K':
+            # Usuń kartę z kolumny dobierania
+            card = draw_pile.remove_card()
+            # Dodaj kartę do docelowej kolumny
+            target_column.add_card(card)
+            return True
+        else:
+            return False
+    
+    # Pobierz kartę na wierzchu docelowej kolumny
+    target_card = target_column.get_top_card()
+    
+    if target_card is None:
         return False
     
-    if card1.value() != card2.value() + 1:
+    # Sprawdź kolor (musi być przeciwny)
+    if source_card.color() == target_card.color():
         return False
-    return True
-'''
+    
+    # Sprawdź wartość (karta z draw pile musi być o jeden mniejsza)
+    if target_card.value == source_card.value + 1:
+        # Usuń kartę z kolumny dobierania
+        card = draw_pile.remove_card()
+        # Dodaj kartę do docelowej kolumny
+        target_column.add_card(card)
+        return True
+    
+    return False
+
+def draw_to_final(draw_pile, final_columns: list) -> bool:
+    """
+    Przenosi kartę z kolumny dobierania (draw pile) do kolumny finalnej.
+    
+    Args:
+        draw_pile: Obiekt Draw_Column reprezentujący stos kart do dobierania.
+        final_columns: Lista obiektów Final_Column reprezentujących kolumny finalne.
+        
+    Returns:
+        bool: True jeśli przeniesienie się udało, False w przeciwnym wypadku.
+    """
+    # Sprawdź czy w kolumnie dobierania jest aktualna karta
+    source_card = draw_pile.get_current_card()
+    
+    if source_card is None:
+        return False
+    
+    # Znajdź odpowiednią kolumnę finalną dla koloru karty
+    target_column = None
+    for column in final_columns:
+        if column.suit == source_card.suit:
+            target_column = column
+            break
+    
+    if target_column is None:
+        return False
+    
+    # Pobierz wierzchnią kartę kolumny finalnej
+    target_card = target_column.top_card()
+    
+    # Jeśli kolumna finalna jest pusta, można położyć tylko asa
+    if target_card is None:
+        if source_card.rank == 'A':
+            # Usuń kartę z kolumny dobierania
+            card = draw_pile.remove_card()
+            # Dodaj kartę do kolumny finalnej
+            target_column.add_card(card)
+            return True
+        else:
+            return False
+    
+    # Sprawdź czy wartość karty jest o jeden większa od wierzchniej karty kolumny finalnej
+    if source_card.value == target_card.value + 1:
+        # Usuń kartę z kolumny dobierania
+        card = draw_pile.remove_card()
+        # Dodaj kartę do kolumny finalnej
+        target_column.add_card(card)
+        return True
+    
+    return False
