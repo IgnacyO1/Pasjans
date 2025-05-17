@@ -61,9 +61,7 @@ class Final_Column:
         else:
             return str("[X]")
         
-    def suit(self):
-        """Zwraca kolor karty."""
-        return self.suit
+
     def top_card(self):
         if len(self.cards) == 0:
             return None
@@ -82,6 +80,10 @@ class Draw_Column:
         self.cards = cards  # lista kart wolnych do dobierania
         self.drawn_cards = []  # lista kart skipniętych/odrzuconych
         self.current_card = None  # aktualnie widoczna karta
+        
+           # Ustaw pierwszą kartę przy inicjalizacji
+        if len(self.cards) > 0:
+            self.next_card()
 
     def next_card(self):
         """
@@ -198,4 +200,4 @@ class Draw_Column:
         return f"Karta: {current} | Pozostało: {len(self.cards)} | Odrzucone: {len(self.drawn_cards)}"
 
 
-    
+

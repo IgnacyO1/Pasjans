@@ -9,8 +9,8 @@ def ask_for_move() -> str:
         return ask_for_move()
     return move
 
-
-def proces_move(move, columns: list, final_columns: list):
+#drawn column :) 
+def proces_move(move, columns: list, final_columns: list, draw_column):
     ''' on tylko określa co to jest za ruch, nie wykonuje go nie sprawdza czy jest poprawny'''
     #przy braku znalezienia poprawnego call do engine lub innych fucnji (quit help new game) callowac na nowo wprowadzenie ruchy
     move = move.lower().split()
@@ -57,7 +57,47 @@ def proces_move(move, columns: list, final_columns: list):
 
                 source_column  = columns[int(source[1])-1]
                 print("janek mus jest czarny")
+
                 return engine.column_to_final(source_column,final_columns)
+
+
+
+
+        if str(source) == "draw":
+            if target[0] == 'c' and int(target[1]) in [1,2,3,4,5,6,7]:
+                target_column = columns[int(target[1])-1]
+                return engine.draw_to_column(draw_column , target_column)
+            
+            if target == "final":
+                return engine.draw_to_final(draw_column, final_columns) 
+            
+        
+    if len(move) == 4:
+        source = move[1]
+        target = move[2]
+        number_card = int(move[3])
+
+        if int(source[1]) not in [1,2,3,4,5,6,7]:
+            return False
+        
+        if int(target[1]) not in [1,2,3,4,5,6,7]:
+            return False
+        if source[0] != 'c' or target[0] != 'c':
+            return False
+        source_column = int(source[1])
+        target_column = int(target[1])
+
+        #print(source_column, target_column)
+
+        source_column = columns[source_column - 1]
+        target_column = columns[target_column - 1]
+
+        return engine.sequence_column_to_column(source_column, target_column, number_card)
+    
+    return "work in progress" 
+
+
+        
         
         
         

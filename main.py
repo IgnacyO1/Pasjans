@@ -9,9 +9,9 @@ enviroment.print_game_state(columns, final_columns,deck)
 
 
 print("-" * 40)
-
+draw_column = column.Draw_Column(deck.cards)
 move = ui_moves.ask_for_move()
-procesed_move = ui_moves.proces_move(move, columns,final_columns)
+procesed_move = ui_moves.proces_move(move, columns,final_columns, draw_column)
 
 print(procesed_move)  
 #print(move.startswith("test"))
