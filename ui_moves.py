@@ -51,12 +51,12 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
 
         if str(target) == "final":
             if source == "draw":
-                return "Work in progress"
+                return engine.draw_to_final(draw_column, final_columns)
 
             if source[0] == 'c' and int(source[1]) in [1,2,3,4,5,6,7]:
 
                 source_column  = columns[int(source[1])-1]
-                print("janek mus jest czarny")
+                #print("janek mus jest czarny")
 
                 return engine.column_to_final(source_column,final_columns)
 
@@ -68,8 +68,7 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
                 target_column = columns[int(target[1])-1]
                 return engine.draw_to_column(draw_column , target_column)
             
-            if target == "final":
-                return engine.draw_to_final(draw_column, final_columns) 
+             
             
         
     if len(move) == 4:
@@ -94,7 +93,7 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
 
         return engine.sequence_column_to_column(source_column, target_column, number_card)
     
-    return "work in progress" 
+    return "skibidi" 
 
 
         

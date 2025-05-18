@@ -4,7 +4,7 @@
 # and the talia
 
 from Card import Card
-from column import Column, Final_Column
+from column import Column, Final_Column, Draw_Column    
 from deck import Deck 
 
 import random 
@@ -29,13 +29,14 @@ def create_deck():
 
 def print_deck(deck):
     """
-    Prints all cards in the deck.
+    Prints all cards in the deck with their value, color and rank.
     
     Args:
         deck (Deck): The deck to print.
     """
-    for card in deck:
-        print(card)
+    for card in deck.cards:
+        card.flip()  # Flip the card if needed
+        print(f"{str(card)} - Value: {card.value}, Color: {card.color()}, Rank: {card.rank}")
 
 def create_columns():
     """
