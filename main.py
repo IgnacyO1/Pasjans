@@ -2,11 +2,11 @@ import enviroment
 import ui_moves
 import column
 import engine
-deck, columns, final_columns = enviroment.setup_game()
+deck, columns, final_columns, draw_column = enviroment.setup_game()
 
-enviroment.print_deck(deck)
+#enviroment.print_deck(deck)
 #prining 
-enviroment.print_game_state(columns, final_columns,deck)
+enviroment.print_game_state(columns, final_columns,deck, draw_column)
 
 
 print("-" * 40)

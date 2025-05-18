@@ -97,6 +97,21 @@ def print_final_columns(final_columns):
     for i, column in enumerate(final_columns):
         print(f"Final Column {column.suit}: {column.show_cards()}")
 
+
+
+def setup_draw_column(deck):
+    """
+    Creates a draw column from the deck.
+    
+    Args:
+        deck (Deck): The deck to create the draw column from.
+    
+    Returns:
+        Draw_Column: A Draw_Column object initialized with the deck's cards.
+    """
+    draw_column = Draw_Column(deck.cards)
+    return draw_column
+
 def setup_game():
     """
     Sets up the game environment: deck, columns, and final columns.
@@ -115,9 +130,11 @@ def setup_game():
     # Create final columns
     final_columns = setup_final_columns()
 
-    return deck, columns, final_columns
+    draw_column = setup_draw_column(deck)
 
-def print_game_state(columns, final_columns, deck):
+    return deck, columns, final_columns, draw_column
+
+def print_game_state(columns, final_columns, deck, draw_column):
     """
     Prints the current state of the game: columns, final columns, and drawn cards.
     
@@ -125,6 +142,7 @@ def print_game_state(columns, final_columns, deck):
         columns (list): List of Column objects.
         final_columns (list): List of Final_Column objects.
         deck (Deck): The current deck.
+        draw_column (Draw_Column): The draw column.
     """
     print("Columns:")
     print_columns(columns)
@@ -133,8 +151,9 @@ def print_game_state(columns, final_columns, deck):
     print_final_columns(final_columns)
 
     print("\nDrawn Cards:")
-    print(deck.show_card())
-
+    print(draw_column.get_current_card())
+    card = draw_column.get_current_card()
+    print(f"{str(card)} - Value: {card.value}, Color: {card.color()}, Rank: {card.rank}")
 
 
 

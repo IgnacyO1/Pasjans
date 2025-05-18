@@ -77,13 +77,17 @@ class Draw_Column:
         Args:
             cards (list): Lista kart pozostałych po rozdaniu do kolumn.
         """
-        self.cards = cards  # lista kart wolnych do dobierania
+        self.cards = cards.copy()  # lista kart wolnych do dobierania
         self.drawn_cards = []  # lista kart skipniętych/odrzuconych
         self.current_card = None  # aktualnie widoczna karta
         
-           # Ustaw pierwszą kartę przy inicjalizacji
-        if len(self.cards) > 0:
-            self.next_card()
+        # Ustaw pierwszą kartę przy inicjalizacji
+        if self.cards and len(self.cards) > 0:
+            temp = self.cards.pop(0)
+            if not temp.visible:
+                temp.flip()
+            self.current_card = temp
+        
 
     def next_card(self):
         """

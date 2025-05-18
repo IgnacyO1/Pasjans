@@ -51,6 +51,7 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
 
         if str(target) == "final":
             if source == "draw":
+                #return engine.card_to_final(draw_column.get_current_card(), final_columns)
                 return engine.draw_to_final(draw_column, final_columns)
 
             if source[0] == 'c' and int(source[1]) in [1,2,3,4,5,6,7]:
@@ -66,6 +67,7 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
         if str(source) == "draw":
             if target[0] == 'c' and int(target[1]) in [1,2,3,4,5,6,7]:
                 target_column = columns[int(target[1])-1]
+                #return engine.card_to_column(draw_column.get_current_card(), target_column)
                 return engine.draw_to_column(draw_column , target_column)
             
              
