@@ -108,7 +108,7 @@ def proces_move(move, columns: list, final_columns: list, draw_column):
 
         return engine.sequence_column_to_column(source_column, target_column, number_card)
     
-    return "skibidi"
+    # Handle invalid input
 
 def execute_move(move_result, move, columns, final_columns, draw_column):
     """
