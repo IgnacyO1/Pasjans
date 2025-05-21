@@ -92,15 +92,19 @@ class Draw_Column:
     def next_card(self):
         """
         Dobiera następną kartę z talii.
-        Jeśli talia jest pusta, tasuje odrzucone karty.
+        Jeśli talia jest pusta, NIE tasuje odrzuconych kart automatycznie.
         
         Returns:
             Card: Aktualnie dobrana karta lub None, jeśli nie ma kart.
         """
+        # Move current card to drawn cards if it exists
+        if self.current_card is not None:
+            self.drawn_cards.append(self.current_card)
+        
+        # Check if there are any cards left in the deck
         if len(self.cards) == 0:
-            self.reshuffle()
-            if len(self.cards) == 0:  # Jeśli po tasowaniu wciąż nie ma kart
-                return None
+            self.current_card = None
+            return None
         
         # Pobierz kartę z wierzchu talii
         self.current_card = self.cards.pop(0)

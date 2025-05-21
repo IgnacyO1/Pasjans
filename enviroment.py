@@ -151,9 +151,15 @@ def print_game_state(columns, final_columns, deck, draw_column):
     print_final_columns(final_columns)
 
     print("\nDrawn Cards:")
-    print(draw_column.get_current_card())
-    card = draw_column.get_current_card()
-    print(f"{str(card)} - Value: {card.value}, Color: {card.color()}, Rank: {card.rank}")
+    current_card = draw_column.get_current_card()
+    if current_card:
+        print(current_card)
+    elif len(draw_column.drawn_cards) > 0:
+        print("No cards left. Type 'reshuffle' to mix drawn cards and start drawing again.")
+    else:
+        print("Empty Column")
+    #card = draw_column.get_current_card()
+    #print(f"{str(card)} - Value: {card.value}, Color: {card.color()}, Rank: {card.rank}")
 
 
 
