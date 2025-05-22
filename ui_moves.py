@@ -136,6 +136,9 @@ def execute_move(move_result, move, columns, final_columns, draw_column):
             if len(draw_column.drawn_cards) > 0:
                 return "No more cards in deck. Type 'reshuffle' to mix drawn cards and start drawing again."
             else:
+                # Sprawdzenie warunku zwycięstwa
+                if len(draw_column.cards) == 0 and len(draw_column.drawn_cards) == 0:
+                    return "Congratulations! You have won the game!"
                 return "No cards available in the draw pile."
     elif move_result == "reshuffle":
         if len(draw_column.drawn_cards) > 0:
@@ -144,8 +147,14 @@ def execute_move(move_result, move, columns, final_columns, draw_column):
             if card:
                 return f"Reshuffled drawn cards and drew: {card}"
             else:
+                # Sprawdzenie warunku zwycięstwa po reshuffle
+                if len(draw_column.cards) == 0 and len(draw_column.drawn_cards) == 0:
+                    return "Congratulations! You have won the game!"
                 return "Reshuffled but no cards available"
         else:
+            # Sprawdzenie warunku zwycięstwa gdy nie ma już kart do reshuffle
+            if len(draw_column.cards) == 0 and len(draw_column.drawn_cards) == 0:
+                return "Congratulations! You have won the game!"
             return "No drawn cards to reshuffle"
     elif move_result == "restart":
         return "restart"
