@@ -1,34 +1,34 @@
-
 class Card:
-    def __init__(self, suit, rank,visible=False):
+    """
+    Represents a playing card with a suit, rank, and visibility state.
+    
+    Attributes:
+        suit (str): The card suit symbol ('♠', '♥', '♦', '♣')
+        rank (str): The card rank ('A', '2'-'10', 'J', 'Q', 'K')
+        visible (bool): Whether the card is face up (visible) or face down
+        value (int): Numerical value of the card (1-13)
+    """
+    def __init__(self, suit, rank, visible=False):
+        """
+        Initialize a new Card.
+        
+        Args:
+            suit (str): The card suit symbol ('♠', '♥', '♦', '♣')
+            rank (str): The card rank ('A', '2'-'10', 'J', 'Q', 'K')
+            visible (bool, optional): Initial visibility state. Defaults to False.
+        """
         self.suit = suit
         self.rank = rank
         self.visible = visible
-        
-
-        
-
         self.value = self.set_value()
 
-    def color(self):
-        if self.suit in ['♠', '♣']:
-            return 'black'
-        else:
-            return 'red'
-        #return self._color
-    def flip(self):
-        self.visible = not self.visible
-    
-    def is_visible(self):
-        return self.visible
-    
-    def __str__(self):
-        return f"{self.rank}{self.suit}" if self.visible else "[X]"
-    
-    
-    
-
     def set_value(self):
+        """
+        Calculate and return the numerical value of the card based on its rank.
+        
+        Returns:
+            int: The card's value (1-13)
+        """
         dict = {
             'A': 1,
             '2': 2,
@@ -51,6 +51,39 @@ class Card:
                 break
         return temp_value
 
+    def color(self):
+        """
+        Determine the card's color based on its suit.
+        
+        Returns:
+            str: 'black' for spades and clubs, 'red' for hearts and diamonds
+        """
+        if self.suit in ['♠', '♣']:
+            return 'black'
+        else:
+            return 'red'
 
+    def flip(self):
+        """Toggle the visibility state of the card."""
+        self.visible = not self.visible
     
+    def is_visible(self):
+        """
+        Check if the card is face up.
+        
+        Returns:
+            bool: True if the card is visible, False otherwise
+        """
+        return self.visible
     
+    def __str__(self):
+        """
+        Get string representation of the card.
+        
+        Returns:
+            str: The rank and suit if visible, otherwise '[X]'
+        """
+        return f"{self.rank}{self.suit}" if self.visible else "[X]"
+
+
+

@@ -1,81 +1,155 @@
 import random
 from Card import Card
 from deck import Deck
+
 class Column:
+    """
+    Represents a standard column of cards in a card game.
+    Provides basic operations for managing a stack of cards.
+    """
     def __init__(self):
+        """Initialize an empty column of cards."""
         self.cards = []  # Lista kart w kolumnie
     
     def add_card(self, card):
-        """Dodaje kartę na szczyt kolumny."""
+        """
+        Add a card to the top of the column.
+        
+        Args:
+            card: The card to add to the column.
+        """
         self.cards.append(card)
     
     def remove_top_card(self):
-        """Usuwa i zwraca kartę ze szczytu kolumny."""
+        """
+        Remove and return the card from the top of the column.
+        
+        Returns:
+            The top card if the column is not empty, None otherwise.
+        """
         if self.get_length() > 0:
             return self.cards.pop()
         return None
     
     def get_top_card(self):
-        """Zwraca kartę na szczycie kolumny bez jej usuwania."""
+        """
+        Return the top card without removing it from the column.
+        
+        Returns:
+            The top card if the column is not empty, None otherwise.
+        """
         if self.get_length() > 0:
             return self.cards[-1]
         return None
     
     def get_length(self):
-        """Zwraca liczbę kart w kolumnie."""
+        """
+        Return the number of cards in the column.
+        
+        Returns:
+            int: The number of cards in the column.
+        """
         return len(self.cards)
     
     def is_empty(self):
-        """Sprawdza, czy kolumna jest pusta."""
+        """
+        Check if the column is empty.
+        
+        Returns:
+            bool: True if the column is empty, False otherwise.
+        """
         return len(self.cards) == 0
     
     def get_cards(self):
-        """Zwraca wszystkie karty w kolumnie."""
+        """
+        Return all cards in the column.
+        
+        Returns:
+            list: All cards in the column.
+        """
         return self.cards
     
     def __str__(self):
-        """Zwraca reprezentację tekstową kolumny."""
-        return ' '.join(str(card) for card in self.cards)\
+        """
+        Return a string representation of the column.
+        
+        Returns:
+            str: A string showing all cards in the column.
+        """
+        return ' '.join(str(card) for card in self.cards)
     
     def get_random_card(self):
-        """Zwraca losową kartę z kolumny."""
+        """
+        Return a random card from the column without removing it.
+        
+        Returns:
+            A random card if the column is not empty, None otherwise.
+        """
         if self.get_length() > 0:
             return random.choice(self.cards)
         return None
     
 
-
-
 class Final_Column:
-    def __init__(self,suit):
+    """
+    Represents a final column for a specific suit in card games like solitaire.
+    Cards are typically stacked in order from Ace to King of the same suit.
+    """
+    def __init__(self, suit):
+        """
+        Initialize a final column for a specific suit.
+        
+        Args:
+            suit: The suit of cards for this column.
+        """
         self.cards = []
         self.suit = suit
         self._suit = suit
 
     def add_card(self, card):
-        """Dodaje kartę na szczyt kolumny."""
+        """
+        Add a card to the top of the final column.
+        
+        Args:
+            card: The card to add to the column.
+        """
         self.cards.append(card)
+        
     def show_cards(self):
+        """
+        Show the top card of the final column or a placeholder if empty.
+        
+        Returns:
+            str: The top card or "[X]" if the column is empty.
+        """
         if self.cards != []:
             return self.cards[-1]
         else:
             return str("[X]")
         
-
     def top_card(self):
+        """
+        Get the top card of the final column without removing it.
+        
+        Returns:
+            The top card if the column is not empty, None otherwise.
+        """
         if len(self.cards) == 0:
             return None
         return self.cards[-1]
                   
 
-
 class Draw_Column:
+    """
+    Represents the draw/stock pile in solitaire-like card games.
+    Manages cards that can be drawn and recycled during gameplay.
+    """
     def __init__(self, cards: list):
         """
-        Inicjalizuje kolumnę kart do dobierania w grze pasjans.
+        Initialize the draw column with a list of cards.
         
         Args:
-            cards (list): Lista kart pozostałych po rozdaniu do kolumn.
+            cards (list): List of cards remaining after dealing to columns.
         """
         self.cards = cards.copy()  # lista kart wolnych do dobierania
         self.drawn_cards = []  # lista kart skipniętych/odrzuconych
@@ -91,11 +165,11 @@ class Draw_Column:
 
     def next_card(self):
         """
-        Dobiera następną kartę z talii.
-        Jeśli talia jest pusta, NIE tasuje odrzuconych kart automatycznie.
+        Draw the next card from the deck.
+        Does NOT automatically reshuffle discarded cards when deck is empty.
         
         Returns:
-            Card: Aktualnie dobrana karta lub None, jeśli nie ma kart.
+            Card: The newly drawn card or None if no cards are available.
         """
         # Move current card to drawn cards if it exists
         if self.current_card is not None:
@@ -117,19 +191,19 @@ class Draw_Column:
     
     def get_current_card(self):
         """
-        Zwraca aktualnie widoczną kartę bez dobierania nowej.
+        Return the currently visible card without drawing a new one.
         
         Returns:
-            Card: Aktualna karta lub None, jeśli nie ma żadnej.
+            Card: The current card or None if there isn't one.
         """
         return self.current_card
     
     def remove_card(self):
         """
-        Usuwa i zwraca aktualną kartę (np. gdy gracz użyje karty).
+        Remove and return the current card (e.g., when the player uses it).
         
         Returns:
-            Card: Usunięta karta lub None, jeśli nie ma aktualnej karty.
+            Card: The removed card or None if there is no current card.
         """
         if self.current_card is None:
             return None
@@ -140,10 +214,10 @@ class Draw_Column:
     
     def skip_card(self):
         """
-        Przenosi aktualną kartę do odrzuconych i dobiera nową.
+        Move the current card to the discard pile and draw a new one.
         
         Returns:
-            Card: Nowo dobrana karta lub None, jeśli nie ma kart.
+            Card: The newly drawn card or None if no cards are available.
         """
         if self.current_card is not None:
             self.drawn_cards.append(self.current_card)
@@ -153,7 +227,7 @@ class Draw_Column:
     
     def reshuffle(self):
         """
-        Tasuje odrzucone karty i przenosi je z powrotem do talii.
+        Shuffle the discarded cards and move them back to the draw pile.
         """
         import random
         if len(self.drawn_cards) > 0:
@@ -163,19 +237,19 @@ class Draw_Column:
     
     def is_empty(self):
         """
-        Sprawdza, czy talia i odrzucone karty są puste.
+        Check if both the draw pile and discard pile are empty.
         
         Returns:
-            bool: True, jeśli nie ma żadnych kart, False w przeciwnym razie.
+            bool: True if there are no cards left, False otherwise.
         """
         return len(self.cards) == 0 and len(self.drawn_cards) == 0 and self.current_card is None
     
     def get_count(self):
         """
-        Zwraca łączną liczbę kart w talii i odrzuconych.
+        Return the total number of cards in the draw pile and discard pile.
         
         Returns:
-            int: Liczba kart.
+            int: The total number of cards.
         """
         count = len(self.cards) + len(self.drawn_cards)
         if self.current_card is not None:
@@ -184,10 +258,10 @@ class Draw_Column:
     
     def remove_first_card(self):
         """
-        Usuwa i zwraca pierwszą kartę z talii.
+        Remove and return the first card from the draw pile.
         
         Returns:
-            Card: Pierwsza karta z talii lub None, jeśli talia jest pusta.
+            Card: The first card from the draw pile or None if it's empty.
         """
         if len(self.cards) > 0:
             return self.cards.pop(0)
@@ -195,10 +269,10 @@ class Draw_Column:
     
     def __str__(self):
         """
-        Zwraca reprezentację tekstową aktualnego stanu talii.
+        Return a string representation of the current state of the draw pile.
         
         Returns:
-            str: Opis talii.
+            str: A description of the draw pile.
         """
         if self.current_card is not None:
             current = str(self.current_card)
