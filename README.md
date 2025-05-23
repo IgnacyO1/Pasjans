@@ -2,7 +2,7 @@
 
 Tekstowa implementacja klasycznej gry karcianej Pasjans Klondike w języku Python.
 
-
+**[Zobacz stronę projektu](https://ignacyo1.github.io/Pasjans/index.html)**
 
 ## Opis projektu
 
@@ -17,11 +17,11 @@ Ten projekt to implementacja klasycznej gry karcianej Pasjans Klondike w interfe
 
 1. Sklonuj repozytorium:
    ```
-   git clone https://github.com/IgnacyO1/Python.git
+   git clone https://github.com/IgnacyO1/Pasjans.git
    ```
 2. Przejdź do katalogu projektu:
    ```
-   cd Python
+   cd Pasjans
    ```
 3. Uruchom grę za pomocą polecenia:
    ```
