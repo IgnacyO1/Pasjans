@@ -1,3 +1,6 @@
+from colorama import init, Fore, Style
+init(autoreset=True)
+
 #this is file to create the environment
 # for the game
 # it will create the deck and the columns
@@ -56,7 +59,8 @@ def print_columns(columns):
         columns (list): List of Column objects to print.
     """
     for i, column in enumerate(columns):
-        print(f"Column {i+1}: {column}")
+        karty = [koloruj_karte(card) for card in column.cards]
+        print(f"Column {i+1}: {' '.join(karty)}")
 
 def set_card_in_column(deck, columns):
     """
@@ -87,6 +91,15 @@ def setup_final_columns():
     final_columns = [Final_Column(suit) for suit in suits]
     return final_columns
 
+def koloruj_suit(suit):
+    """
+    Zwraca suit w odpowiednim kolorze.
+    """
+    if suit in ['♥', '♦']:
+        return f"{Fore.RED}{suit}{Style.RESET_ALL}"
+    else:
+        return f"{Fore.BLACK}{suit}{Style.RESET_ALL}"
+
 def print_final_columns(final_columns):
     """
     Print the contents of each final column.
@@ -94,10 +107,10 @@ def print_final_columns(final_columns):
     Args:
         final_columns (list): List of Final_Column objects to print.
     """
-    for i, column in enumerate(final_columns):
-        print(f"Final Column {column.suit}: {column.show_cards()}")
-
-
+    for column in final_columns:
+        karty = [koloruj_karte(card) for card in column.cards]
+        colored_suit = koloruj_suit(column.suit)
+        print(f"Final Column {colored_suit}: {' '.join(karty)}")
 
 def setup_draw_column(deck):
     """
@@ -153,13 +166,25 @@ def print_game_state(columns, final_columns, deck, draw_column):
     print("\nDrawn Cards:")
     current_card = draw_column.get_current_card()
     if current_card:
-        print(current_card)
+        print(koloruj_karte(current_card))
     elif len(draw_column.cards) > 0:
         print("No current card. Type 'next' to draw the next card.")
     elif len(draw_column.drawn_cards) > 0:
         print("No cards left in deck. Type 'reshuffle' to mix drawn cards and start drawing again.")
     else:
         print("Empty Column")
+
+def koloruj_karte(card):
+    """
+    Zwraca string z kartą w odpowiednim kolorze.
+    """
+    if not hasattr(card, "suit") or not hasattr(card, "rank"):
+        return str(card)
+    if card.suit in ['♥', '♦']:
+        color = Fore.RED
+    else:
+        color = Fore.BLACK
+    return f"{color}{card.rank}{card.suit}{Style.RESET_ALL}"
 
 
 
