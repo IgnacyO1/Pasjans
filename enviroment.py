@@ -14,8 +14,8 @@ ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
 def create_deck():
     """
-    Creates a standard deck of 52 playing cards.
-    
+    Create a standard deck of 52 playing cards.
+
     Returns:
         Deck: A deck object containing all 52 cards.
     """
@@ -29,8 +29,8 @@ def create_deck():
 
 def print_deck(deck):
     """
-    Prints all cards in the deck with their value, color and rank.
-    
+    Print all cards in the deck with their value, color and rank.
+
     Args:
         deck (Deck): The deck to print.
     """
@@ -40,8 +40,8 @@ def print_deck(deck):
 
 def create_columns():
     """
-    Creates 7 empty columns for the game.
-    
+    Create 7 empty columns for the game.
+
     Returns:
         list: A list containing 7 Column objects.
     """
@@ -50,8 +50,8 @@ def create_columns():
 
 def print_columns(columns):
     """
-    Prints the contents of each column.
-    
+    Print the contents of each column.
+
     Args:
         columns (list): List of Column objects to print.
     """
@@ -60,9 +60,9 @@ def print_columns(columns):
 
 def set_card_in_column(deck, columns):
     """
-    Distributes cards from the deck to the columns according to solitaire rules.
+    Distribute cards from the deck to the columns according to solitaire rules.
     Each column i gets i face-down cards and 1 face-up card on top.
-    
+
     Args:
         deck (Deck): The deck to take cards from.
         columns (list): List of Column objects to distribute cards to.
@@ -79,8 +79,8 @@ def set_card_in_column(deck, columns):
 
 def setup_final_columns():
     """
-    Creates the four final columns for each suit.
-    
+    Create the four final columns for each suit.
+
     Returns:
         list: A list containing 4 Final_Column objects, one for each suit.
     """
@@ -89,8 +89,8 @@ def setup_final_columns():
 
 def print_final_columns(final_columns):
     """
-    Prints the contents of each final column.
-    
+    Print the contents of each final column.
+
     Args:
         final_columns (list): List of Final_Column objects to print.
     """
@@ -101,11 +101,11 @@ def print_final_columns(final_columns):
 
 def setup_draw_column(deck):
     """
-    Creates a draw column from the deck.
-    
+    Create a draw column from the deck.
+
     Args:
         deck (Deck): The deck to create the draw column from.
-    
+
     Returns:
         Draw_Column: A Draw_Column object initialized with the deck's cards.
     """
@@ -114,10 +114,10 @@ def setup_draw_column(deck):
 
 def setup_game():
     """
-    Sets up the game environment: deck, columns, and final columns.
-    
+    Set up the game environment: deck, columns, and final columns.
+
     Returns:
-        tuple: A tuple containing (deck, columns, final_columns).
+        tuple: A tuple containing (deck, columns, final_columns, draw_column).
     """
     # Create and shuffle the deck
     deck = create_deck()
@@ -136,8 +136,8 @@ def setup_game():
 
 def print_game_state(columns, final_columns, deck, draw_column):
     """
-    Prints the current state of the game: columns, final columns, and drawn cards.
-    
+    Print the current state of the game: columns, final columns, and drawn cards.
+
     Args:
         columns (list): List of Column objects.
         final_columns (list): List of Final_Column objects.

@@ -2,7 +2,17 @@ from Card import Card
 from column import Column, Final_Column
 
 
-def column_to_column(first_column: Column, second_column: Column) ->bool:
+def column_to_column(first_column: Column, second_column: Column) -> bool:
+    """
+    Check if the top card from the first column can be moved to the second column according to game rules.
+
+    Args:
+        first_column (Column): The source column.
+        second_column (Column): The target column.
+
+    Returns:
+        bool: True if the move is valid, False otherwise.
+    """
     
     if first_column.is_empty():
         return False
@@ -41,6 +51,17 @@ def column_to_column(first_column: Column, second_column: Column) ->bool:
         
 
 def sequence_column_to_column(source_column: Column, target_column: Column, number_card: int):
+    """
+    Check if a sequence of cards from the source column can be moved to the target column.
+
+    Args:
+        source_column (Column): The column from which cards are moved.
+        target_column (Column): The column to which cards are moved.
+        number_card (int): Number of cards to move.
+
+    Returns:
+        bool: True if the move is valid, False otherwise.
+    """
     
     source_cards :list = source_column.get_cards()
     target_cards :list = target_column.get_cards()
@@ -106,7 +127,16 @@ def sequence_column_to_column(source_column: Column, target_column: Column, numb
         
     
 def column_to_final(first_column: Column, final_columns: list) -> bool:
+    """
+    Check if the top card from the given column can be moved to its corresponding final (foundation) column.
 
+    Args:
+        first_column (Column): The source column.
+        final_columns (list): List of Final_Column objects.
+
+    Returns:
+        bool: True if the move is valid, False otherwise.
+    """
     card = first_column.get_top_card()
     card_suit = card.suit
     where_column = None
@@ -146,14 +176,14 @@ def column_to_final(first_column: Column, final_columns: list) -> bool:
 
 def draw_to_column(draw_pile, target_column: Column) -> bool:
     """
-    Sprawdza czy karta z kolumny dobierania (draw pile) może być przeniesiona do normalnej kolumny.
-    
+    Check if the current card from the draw pile can be moved to the target column.
+
     Args:
-        draw_pile: Obiekt Draw_Column reprezentujący stos kart do dobierania.
-        target_column: Obiekt Column reprezentujący docelową kolumnę.
-        
+        draw_pile: Draw_Column object representing the draw pile.
+        target_column (Column): The target column.
+
     Returns:
-        bool: True jeśli ruch jest prawidłowy, False w przeciwnym wypadku.
+        bool: True if the move is valid, False otherwise.
     """
     # Sprawdź czy w kolumnie dobierania jest aktualna karta
     source_card = draw_pile.get_current_card()
@@ -188,14 +218,14 @@ def draw_to_column(draw_pile, target_column: Column) -> bool:
 
 def draw_to_final(draw_pile, final_columns: list) -> bool:
     """
-    Sprawdza czy karta z kolumny dobierania (draw pile) może być przeniesiona do kolumny finalnej.
-    
+    Check if the current card from the draw pile can be moved to its corresponding final (foundation) column.
+
     Args:
-        draw_pile: Obiekt Draw_Column reprezentujący stos kart do dobierania.
-        final_columns: Lista obiektów Final_Column reprezentujących kolumny finalne.
-        
+        draw_pile: Draw_Column object representing the draw pile.
+        final_columns (list): List of Final_Column objects.
+
     Returns:
-        bool: True jeśli ruch jest prawidłowy, False w przeciwnym wypadku.
+        bool: True if the move is valid, False otherwise.
     """
     # Sprawdź czy w kolumnie dobierania jest aktualna karta
 
@@ -234,14 +264,14 @@ def draw_to_final(draw_pile, final_columns: list) -> bool:
 
 def card_to_final(card: Card, final_columns: list) -> bool:
     """
-    Sprawdza czy karta może być przeniesiona do kolumny finalnej.
-    
+    Check if the given card can be moved to its corresponding final (foundation) column.
+
     Args:
-        card: Obiekt Card reprezentujący kartę do przeniesienia.
-        final_columns: Lista obiektów Final_Column reprezentujących kolumny finalne.
-        
+        card (Card): The card to move.
+        final_columns (list): List of Final_Column objects.
+
     Returns:
-        bool: True jeśli ruch jest prawidłowy, False w przeciwnym wypadku.
+        bool: True if the move is valid, False otherwise.
     """
     # Znajdź odpowiednią kolumnę finalną dla koloru karty
     target_column = None
@@ -271,14 +301,14 @@ def card_to_final(card: Card, final_columns: list) -> bool:
 
 def card_to_column(card: Card, target_column: Column) -> bool:
     """
-    Sprawdza czy karta może być przeniesiona do kolumny.
-    
+    Check if the given card can be moved to the target column.
+
     Args:
-        card: Obiekt Card reprezentujący kartę do przeniesienia.
-        target_column: Obiekt Column reprezentujący docelową kolumnę.
-        
+        card (Card): The card to move.
+        target_column (Column): The target column.
+
     Returns:
-        bool: True jeśli ruch jest prawidłowy, False w przeciwnym wypadku.
+        bool: True if the move is valid, False otherwise.
     """
     # Sprawdź czy kolumna jest pusta
     if target_column.is_empty():
