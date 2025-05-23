@@ -147,14 +147,14 @@ def execute_move(move_result, move, columns, final_columns, draw_column):
             if card:
                 return f"Reshuffled drawn cards and drew: {card}"
             else:
-                # Sprawdzenie warunku zwycięstwa po reshuffle
-                if len(draw_column.cards) == 0 and len(draw_column.drawn_cards) == 0:
-                    return "Congratulations! You have won the game!"
+                # Check for victory condition
+                if check_victory(final_columns):
+                    return victory_message()
                 return "Reshuffled but no cards available"
         else:
-            # Sprawdzenie warunku zwycięstwa gdy nie ma już kart do reshuffle
-            if len(draw_column.cards) == 0 and len(draw_column.drawn_cards) == 0:
-                return "Congratulations! You have won the game!"
+            # Check for victory condition when there are no cards to reshuffle
+            if check_victory(final_columns):
+                return victory_message()
             return "No drawn cards to reshuffle"
     elif move_result == "restart":
         return "restart"
@@ -276,6 +276,47 @@ def display_help():
     10. restart - Start a new game
     """
     return help_text
+
+def check_victory(final_columns):
+    """
+    Check if the player has won the game by verifying all foundation piles are complete.
+    A complete foundation pile has a King as its top card.
+    
+    Args:
+        final_columns (list): List of foundation columns
+        
+    Returns:
+        bool: True if the game is won, False otherwise
+    """
+    for column in final_columns:
+        # Check if the column has 13 cards (complete suit)
+        if len(column.cards) < 13:
+            return False
+        
+        # Check if the top card is a King
+        top_card = column.get_top_card()
+        if not top_card or top_card.rank != 'K':
+            return False
+    
+    return True
+
+def victory_message():
+    """
+    Returns a celebratory victory message.
+    
+    Returns:
+        str: Victory message
+    """
+    return """
+    🎉 🎊 CONGRATULATIONS! 🎊 🎉
+    
+    You've completed the Solitaire game!
+    All cards have been successfully moved to the foundation piles.
+    
+    What an amazing achievement!
+    
+    Would you like to play again? Type 'restart' to begin a new game.
+    """
 
 
 
