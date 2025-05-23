@@ -2,7 +2,7 @@
 
 Tekstowa implementacja klasycznej gry karcianej Pasjans Klondike w języku Python.
 
-![Solitaire Game](https://i.imgur.com/FrLFzfb.png)
+
 
 ## Opis projektu
 
