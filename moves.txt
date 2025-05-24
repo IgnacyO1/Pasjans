@@ -16,4 +16,4 @@
 
 8. help wyswietla pomoc (lepiej napisany ten pli)
 
-9. quit (znaczy ze ktos jest frajerem i przegrywa)
+9. quit 
