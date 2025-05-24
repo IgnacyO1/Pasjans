@@ -1,0 +1,19 @@
+Dzień dobry,
+
+Na starcie plik Pasjans_skompilowany.exe  jest to skompilowany przez bibliote pyinstaller
+mojej produkcji interpretacja gry Pasjans. Powinno sie go dać uruchomic bez problemu
+nawet mimo braku języka Python 
+
+Załanczam również reszte kodu oraz katalog docs są to pliki z dokumentacją krótą 
+również można zobaczyć na stronie: https://ignacyo1.github.io/Pasjans/
+
+Zachęcam do zagrania w tą terminalową przygode oraz o zerkniecię na dokumetacje
+
+Zgodnie z zalecaniami zadania załączam plik ReadMe który jest moją wizytówką oprócz samego kodu jak i instrukcją 
+której zrozumienia otwiera klucz do świata karcianej przygody :) 
+
+
+Link do repozytorium kodu z githuba: https://github.com/IgnacyO1/Pasjans
+
+
+Twórca: Ignacy Ozga 
